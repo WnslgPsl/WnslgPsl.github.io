@@ -18,6 +18,7 @@ class PersonCharacteristic {
     }
 }
 ```
+<br>
 
 ```kotlin
 typealias pc = PersonCharacteristic
