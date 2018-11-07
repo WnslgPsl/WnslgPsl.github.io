@@ -84,8 +84,10 @@ fun main(args: Array<String>) {
     println(managerName(developer))
 }
 ```
-
+<br>
 * 아래처럼 연속적인 사용도 가능합니다.
+<br>
+
 ```kotlin
 class Address(val streetAddress: String, val zipCode: Int,
               val city: String, val country: String)
