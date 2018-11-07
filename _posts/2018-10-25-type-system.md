@@ -27,6 +27,7 @@ public int getLen(String str) {
 // 컴파일시에는 문제가 없지만 런타임에서 NPE발생
 getlen(null);
 ```
+<br>
 
 ```kotlin
 fun getlen(str: String) = str.length
@@ -69,6 +70,8 @@ fun main(args: Array<String>) {
 * null이 입력되면 null을 반환합니다.
 
 * property에도 ?.으 사용하여 편리하게 null을 처리할 수 있습니다.
+<br>
+
 ```kotlin
 class Employee(val name: String, val manager: Employee?)
 
@@ -105,9 +108,10 @@ fun main(args: Array<String>) {
 ### 6.1.4 엘비스 연산자(elvis operator): ?:
 
 * ?. 연산자는 null이 입력되면 null을 반환합니다. 필요에 따라서 null일 경우 default값을 지정해야되는 경우도 있습니다. 이때 ?: 사용하여 편리하게 처리할 수 있습니다.
+<br>
 
-![elvis](/assets/elvis.jpeg)
-
+![elvis](/assets/img/elvis.jpeg)
+<br>
 * 연산자 모양이 엘비스 프레슬리를 닮아서 붙여진 이름이라고 합니다...
 
 ```kotlin
@@ -337,7 +341,10 @@ fun main(args: Array<String>) {
 
 * 플랫폼 타입은 null처리를 해도 되고 안해도 상관없습니다.
 * 플랫폼 타입은 자동완성? 에서 String! 형태로 표현횝니다.
-![platform_type](/assets/platform_type.png)
+![platform_type](/assets/img/platform_type.png)
+
+<br>
+
 ```java
 /* 자바 */
 public class Person {
@@ -351,6 +358,9 @@ public class Person {
     }
 }
 ```
+
+<br>
+
 ```kotlin
 fun yellAtSafe(person: Person) {
     println((person.name ?: "Anyone").toUpperCase() + "!!!")
@@ -360,19 +370,24 @@ fun main(args: Array) {
     yellAtSafe(Person(null))
 }
 ```
+<br>
 
 * 코틀린 컴파일러는 이경우 String타입의 null가능성에 대해 전혀 알지 못합니다.
 * Exception피하려면 개발자의 몫...
+<br>
 
 > #### 코틀린이 왜 플랫폼 타입을 도입했는가?  
 > 모든 자바 타입을 null이 될 수 있는 타입으로 다루면 결코 널이 될 수 없는 값에 대해서도 불필요한 null검사가 들어갑니다.  
 > 자바 ArrayList<String> 을 코틀린에서 ArrayList<String?> 으로 다루면 원소에 접근할 때마다 null검사를 수행해거나 안전한 캐스트를 수행해야 합니다. 이런 식으로 처리하면 null 안전성으로 얻는 이익보다 검사에 드는 비용이 훨씬 더 커집니다. 그래서 코틀린 설계자들은 자바의 타입을 가져온 경우 개발자들에게 책임을 넘김 .....
+
+<br>
 
 ```kotlin
 // 두 선언은 모두 올바른 선언입니다.
 val s: String? = person.name
 val s1: String = person.name
 ```
+<br>
 
 ```java
 /* 자바 */
@@ -380,6 +395,7 @@ interface StringProcessor {
     void process(String value);
 }
 ```
+<br>
 
 ```kotlin
 class StringPrinter : StringProcessor {
@@ -409,6 +425,8 @@ class NullableStringPrinter : StringProcessor {
 int a = 1;
 List<Integer> list = new List<>();
 ```
+<br>
+
 ```kotlin
 a : Int = 1
 list : List<Int> = listof(1,2,3)
@@ -604,7 +622,10 @@ fun main(args: Array<String>) {
 * setOf와 mapOf는 자바 표준 라이브러리에 속한 클래스의 인스턴스를 반환합니다. 내부에서 변경이 가능한 클랙스 입니다. (라고 책에 되어있지만, 현재는 kotlin collection을 반환합니다. 찾아본 결과 1.2.x 버전부터 바뀐거 같습니다.)
 
 * 자바 메소드를 호출하면서 컬렉션을 인자로 넘겨야 된다면 아무 collection이나 mutableCollection값을 인자로 넘길 수 있습니다.
+<br>
+
 > 이때 중요한 문제가 생기는데 자바는 읽기전용과 변경 가능을 구분하지 않으므로, 코틀린 읽기 전용 컬렉션으로 선언된 객체라도 자바 코드에서는 변경 할 수 있습니다.
+<br>
 
 ```java
 public class CollectionUtils {
@@ -617,6 +638,8 @@ public class CollectionUtils {
    }
 }
 ```
+<br>
+
 ```kotlin
 fun printInUppercase(list: List<String>) {
     println(CollectionUtils.uppercaseAll(list))
@@ -631,6 +654,7 @@ fun main(args: Array<String>) {
 // [A,B,C]
 // A
 ```
+<br>
 
 > 변경 불가능한 컬렉션 타입을 넘겨도 자바 쪽에서 내용을 변경할 수 있습니다. 따라서 자바쪽에서 컬렉션을 변경할 여지가 있다면 아예 코틀린 쪽에서 변경 가능한 컬렉션을 사용해서 내용이 변경될 수 있음을 코드에 남겨둬야 합니다.
 
@@ -685,4 +709,4 @@ fun main(args: Array<String>) {
 ```
 
 * 박싱된 값이 들어있는 컬렉션이나 배열이 있다면 toIntArray 등의 변환 함수를 사용해 박싱하지 않은 값이 들어있는 배열로 변환할 수 있습니다. (내부에서 IntArray 배열에 값을 박아줍니다.)
-* 컬렉션에 사용할 수 있는 모든 확장 함수를 배열에도 제공합니다. 5장에서 살펴본 filter, map 등을 사용할 수 있습니다. 다만 이런 함수가 반환하는 값은 배열이 아니라 list 입니다.)
+* 컬렉션에 사용할 수 있는 모든 확장 함수를 배열에도 제공합니다. 5장에서 살펴본 filter, map 등을 사용할 수 있습니다. (다만 이런 함수가 반환하는 값은 배열이 아니라 list 입니다.)
