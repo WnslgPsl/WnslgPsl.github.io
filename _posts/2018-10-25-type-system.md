@@ -4,7 +4,7 @@ title: 코틀린 타입 시스템
 date: 2018-10-25 18:10:20 +0300
 description:
 img: kotlin.png
-tags: [Kotlin, ?, ?., ?:, !!, let, nullable, null safe, lateinit, 제네릭, 플랫폼 타입]
+tags: [Kotlin, ?, ?., ?:, let, nullable, null safe, lateinit, 제네릭, 플랫폼 타입]
 ---
 # 코틀린 타입 시스템
 
